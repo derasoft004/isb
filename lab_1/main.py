@@ -55,7 +55,7 @@ def global_symbols_frequency() -> dict:
 
     :return:
     """
-    frequency_lst = [i.replace('§', ' ') for i in read_file('task_2/frequency_symbols_based.txt').split('\n')]
+    frequency_lst = [i.replace('§', ' ') for i in read_file('frequency_symbols_based.txt').split('\n')]
     dictionary = dict()
     symbols, frequency = \
         [frequency_lst[i][0] for i in range(len(frequency_lst))], \
@@ -117,7 +117,13 @@ def encrypted_text_symbols_frequency() -> dict:
 #
 
 
-def task_2():
+def task_2() -> None:
+    """
+    decoding the cod8 using the key
+    key is got after get_equals_dict and selection the right symbols
+
+    :return:
+    """
     encrypted_text = read_file('task_2/cod8.txt')
     ret_str = ''
     # key = {'Я': ' ', 'Д': 'Е', ' ': 'А', '4': 'О', 't': 'И', 'М': 'Н', 'Р': 'Т', 'О': 'Р', 'П': 'С', 'Б': 'В', 'Л': 'М',
@@ -132,7 +138,8 @@ def task_2():
             ret_str += key[symbol]
         except KeyError:
             ret_str += symbol
-    print(ret_str)
+
+    write_file('task_2/decipher_text.txt', ret_str)
 
 
 def main() -> None:
