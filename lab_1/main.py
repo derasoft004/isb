@@ -33,6 +33,30 @@ def write_file(file_name: str, data: str) -> None:
         print(e)
 
 
+def dumb_to_json(data, filename: str) -> None:
+    """
+    writing to json file keys using RU-symbols
+
+    :param data:
+    :param filename:
+    :return:
+    """
+    with open(filename, 'w') as outfile:
+        json.dump(data, outfile, ensure_ascii=False)
+
+
+def load_json(filename) -> None:
+    """
+    reading json file
+
+    :param filename:
+    :return:
+    """
+
+    with open(filename, 'r') as tofile:
+        print(json.load(tofile))
+
+
 def rot16(string: str) -> str:
     return ''.join(map(lambda c: chr(ord(c) + 16) if c.isalpha() and c.lower() <= 'п' else
                                  chr(ord(c) - 16) if c.isalpha() else c, string))
@@ -126,6 +150,7 @@ def task_2() -> None:
     """
     encrypted_text = read_file('task_2/cod8.txt')
     ret_str = ''
+
     # key = {'Я': ' ', 'Д': 'Е', ' ': 'А', '4': 'О', 't': 'И', 'М': 'Н', 'Р': 'Т', 'О': 'Р', 'П': 'С', 'Б': 'В', 'Л': 'М',
     #        'К': 'Л', '5': 'П', '2': 'Д', 'Ь': 'Я', 'Щ': 'Ы', 'У': 'Х', 'Ъ': 'Ь', 'Й': 'К', 'r': 'З', 'Х': 'Ч', '>': 'У',
     #        'Т': 'Ф', 'Е': 'Ж', '1': 'Г', 'Ы': 'Ю', 'А': 'Б', 'И': 'Й', 'Ц': 'Ш', '?': 'Ъ', 'Ф': 'Ц', 'Ч': 'Щ', 'w': 'Э'}
@@ -143,7 +168,7 @@ def task_2() -> None:
 
 
 def main() -> None:
-    # task_1('task_1/common_text.txt', 'task_1/cod8.txt')
+    task_1('task_1/common_text.txt', 'task_1/encrypted_text.txt')
     task_2()
 
 
