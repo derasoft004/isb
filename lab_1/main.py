@@ -150,10 +150,12 @@ def task_2(path_encrypted_text: str, path_key: str, path_write_file: str) -> Non
     write_file(path_write_file, ret_str)
 
 
-def main() -> None:
-    task_1('task_1/common_text.txt', 'task_1/encrypted_text.txt')
-    task_2('task_2/cod8.txt', 'task_2/key.json', 'task_2/decipher_text.txt')
+def main(l1_common_text: str, l1_encrypted_text: str, l2_cod8: str, l2_key: str, l2_decipher_text: str) -> None:
+    task_1(l1_common_text, l1_encrypted_text)
+    task_2(l2_cod8, l2_key, l2_decipher_text)
+
 
 
 if __name__ == '__main__':
-    main()
+    main('task_1/common_text.txt', 'task_1/encrypted_text.txt',
+         'task_2/cod8.txt', 'task_2/key.json', 'task_2/decipher_text.txt')
