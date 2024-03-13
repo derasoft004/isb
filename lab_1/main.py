@@ -12,9 +12,7 @@
      key.json - selected encryption key
 
 """
-import json
-
-from constants import RU_ALPH
+from constants import *
 
 
 def read_file(file_name: str) -> str:
@@ -42,7 +40,7 @@ def write_file(file_name: str, data: str) -> None:
 
 
 
-def dumb_to_json(data, file_name: str) -> None:
+def dump_to_json(data, file_name: str) -> None:
     """
     writing to json file keys using RU-symbols
 
@@ -54,16 +52,7 @@ def dumb_to_json(data, file_name: str) -> None:
         json.dump(data, file, ensure_ascii=False)
 
 
-def load_json(file_name) -> None:
-    """
-    reading json file
 
-    :param file_name:
-    :return:
-    """
-
-    with open(file_name, 'r') as file:
-        print(json.load(file))
 
 
 def rot16(string: str) -> str:
@@ -157,5 +146,5 @@ def main(l1_common_text: str, l1_encrypted_text: str, l2_cod8: str, l2_key: str,
 
 
 if __name__ == '__main__':
-    main('task_1/common_text.txt', 'task_1/encrypted_text.txt',
-         'task_2/cod8.txt', 'task_2/key.json', 'task_2/decipher_text.txt')
+    main(T1_COMMON_TEXT, T1_ENCRYPTED_TEXT,
+         T2_COD8, T2_KEY, T2_DECIPHER_TEXT)
