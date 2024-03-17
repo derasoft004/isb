@@ -39,7 +39,6 @@ def write_file(file_name: str, data: str) -> None:
         file.write(data)
 
 
-
 def dump_to_json(data, file_name: str) -> None:
     """
     writing to json file keys using RU-symbols
@@ -50,8 +49,6 @@ def dump_to_json(data, file_name: str) -> None:
     """
     with open(file_name, 'w') as file:
         json.dump(data, file, ensure_ascii=False)
-
-
 
 
 
@@ -89,7 +86,11 @@ def global_symbols_frequency(path: str) -> dict:
 
     :return:
     """
-    frequency_lst = read_file(path).split('\n')
+    try:
+        frequency_lst = read_file(path).split('\n')
+    except OSError as e:
+        print('error func "global_symbols_frequency": ', e)
+        return {}
     dictionary = dict()
     symbols, frequency = \
         [frequency_lst[i][0] for i in range(len(frequency_lst))], \
@@ -107,7 +108,11 @@ def encrypted_text_symbols_frequency(path: str) -> dict:
     :param path:
     :return: text's symbols dictionary
     """
-    encrypted_text = read_file(path)
+    try:
+        encrypted_text = read_file(path)
+    except OSError as e:
+        print('error func "encrypted_text_symbols_frequency": ', e)
+        return {}
     symbols_dict = dict()
     for key in set(encrypted_text):
         symbols_dict[key] = float(round(encrypted_text.count(key) / len(encrypted_text), 6))
@@ -124,7 +129,11 @@ def task_2(path_encrypted_text: str, path_key: str, path_write_file: str) -> Non
     :param path_write_file:
     :return:
     """
-    encrypted_text = read_file(path_encrypted_text)
+    try:
+        encrypted_text = read_file(path_encrypted_text)
+    except OSError as e:
+        print('error func "task_2": ', e)
+        return
     ret_str = ''
 
     with open(path_key) as f:
@@ -135,14 +144,19 @@ def task_2(path_encrypted_text: str, path_key: str, path_write_file: str) -> Non
             ret_str += key[symbol]
         except KeyError:
             ret_str += symbol
-
-    write_file(path_write_file, ret_str)
+    try:
+        write_file(path_write_file, ret_str)
+    except OSError as e:
+        print('error func "task_2": ', e)
+        return
 
 
 def main(l1_common_text: str, l1_encrypted_text: str, l2_cod8: str, l2_key: str, l2_decipher_text: str) -> None:
-    task_1(l1_common_text, l1_encrypted_text)
-    task_2(l2_cod8, l2_key, l2_decipher_text)
-
+    try:
+        task_1(l1_common_text, l1_encrypted_text)
+        task_2(l2_cod8, l2_key, l2_decipher_text)
+    except Exception as e:
+        print('main error: ', e)
 
 
 if __name__ == '__main__':
