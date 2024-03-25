@@ -19,7 +19,7 @@ def read_file(file_name: str) -> str:
     """
     reading file
 
-    :param file_name: path to file
+    :param file_name: path to file for reading
     :return:  string in one line (withoun \n)
     """
     with open(file_name, 'r') as file:
@@ -31,7 +31,7 @@ def write_file(file_name: str, data: str) -> None:
     """
     writing to file
 
-    :param file_name: path to file
+    :param file_name: path to file for writing
     :param data: data for writing
     :return None:
     """
@@ -43,8 +43,8 @@ def dump_to_json(data, file_name: str) -> None:
     """
     writing to json file keys using RU-symbols
 
-    :param data:
-    :param file_name:
+    :param data: information to writing
+    :param file_name: path to file for writing
     :return:
     """
     with open(file_name, 'w') as file:
@@ -61,7 +61,7 @@ def rot16(string: str) -> str:
             else -> step right
         2) if it isn't -> don't change
 
-    :param string:
+    :param string: string for modification
     :return:
     """
 
@@ -73,8 +73,8 @@ def task_1(path_file_to_read: str, path_file_to_write: str) -> None:
     """
     writing encrypted text to file using function rot16
 
-    :param path_file_to_read:
-    :param path_file_to_write:
+    :param path_file_to_read: path to file for reading
+    :param path_file_to_write: path to file for writing
     :return:
     """
     write_file(path_file_to_write, rot16(read_file(path_file_to_read)))
@@ -84,7 +84,7 @@ def global_symbols_frequency(path: str) -> dict:
     """
     count stat for symbols in global using
 
-    :return:
+    :return: dictionary with symbol's frequency stats
     """
     try:
         frequency_lst = read_file(path).split('\n')
@@ -105,7 +105,7 @@ def encrypted_text_symbols_frequency(path: str) -> dict:
     """
     complete dictionary with symbols frequency in the text
 
-    :param path:
+    :param path: path to file
     :return: text's symbols dictionary
     """
     try:
@@ -124,26 +124,22 @@ def task_2(path_encrypted_text: str, path_key: str, path_write_file: str) -> Non
     decoding the cod8 using the key
     key is got after get_equals_dict and selection the right symbols
 
-    :param path_key:
-    :param path_encrypted_text:
-    :param path_write_file:
-    :return:
+    :param path_key: path to file with key
+    :param path_encrypted_text: path to file with encrypted text
+    :param path_write_file: path to
+    :return: none
     """
     try:
         encrypted_text = read_file(path_encrypted_text)
     except OSError as e:
         print('error func "task_2": ', e)
         return
-    ret_str = ''
 
     with open(path_key) as f:
         key = json.load(f)
 
-    for symbol in encrypted_text:
-        try:
-            ret_str += key[symbol]
-        except KeyError:
-            ret_str += symbol
+    ret_str = ''.join(key[symbol] for symbol in encrypted_text)
+
     try:
         write_file(path_write_file, ret_str)
     except OSError as e:
@@ -152,6 +148,16 @@ def task_2(path_encrypted_text: str, path_key: str, path_write_file: str) -> Non
 
 
 def main(l1_common_text: str, l1_encrypted_text: str, l2_cod8: str, l2_key: str, l2_decipher_text: str) -> None:
+    """
+    main function where all tasks are used
+
+    :param l1_common_text: path to file with common text in task 1
+    :param l1_encrypted_text: path to file with encrypted text in task 1
+    :param l2_cod8: path to file with encrypted text in task 2
+    :param l2_key: path to file with key in task 2
+    :param l2_decipher_text: path to file with decipher text in task 2
+    :return:
+    """
     try:
         task_1(l1_common_text, l1_encrypted_text)
         task_2(l2_cod8, l2_key, l2_decipher_text)
