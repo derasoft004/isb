@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cca75522-36c3-420b-832e-550c42ae8c26" name="Changes" comment="1-th commit&#10;added dir 'task_1' with codes c++ and java that generate pseudorandom sequences and .txt files with them" />
+    <list default="true" id="cca75522-36c3-420b-832e-550c42ae8c26" name="Changes" comment="1-th commit&#10;added dir 'task_1' with codes c++ and java that generate pseudorandom sequences and .txt files with them">
+      <change afterPath="$PROJECT_DIR$/lab_2/task_2/constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab_2/task_2/functions_assistant.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab_2/task_2/paths.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab_2/task_2/tests.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -180,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712077827217</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="1-th commit&#10;added dir 'task_1' with codes c++ and java that generate pseudorandom sequences and .txt files with them">
+      <created>1712078333159</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1712078333159</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
