@@ -1,14 +1,8 @@
 from math import erfc
 from mpmath import gammainc
 
-from constants import N
-from constants import M
-from constants import P0
-from constants import P1
-from constants import P2
-from constants import P3
-from functions_assistant import tests_handler
-from functions_assistant import substring_in_sentence
+from constants import *
+from functions_assistant import tests_handler, substring_in_sentence
 
 
 @tests_handler
