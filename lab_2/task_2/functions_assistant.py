@@ -49,3 +49,4 @@ def substring_in_sentence(sequence: str) -> int:
     max_len = max(max_len, cur_len)
 
     return max_len if max_len < 4 else 4
+

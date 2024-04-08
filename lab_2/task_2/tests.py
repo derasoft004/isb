@@ -2,7 +2,7 @@ from math import erfc
 from mpmath import gammainc
 
 from constants import *
-from functions_assistant import tests_handler, substring_in_sentence
+from functions_assistant import tests_handler, substring_in_sentence, file_reader
 
 
 @tests_handler
@@ -59,3 +59,12 @@ def longest_sequence_of_ones_in_block(sequence: str) -> float:
         xi += ((elem - 16 * pi) ** 2) / (16 * pi)
 
     return gammainc(3 / 2, xi / 2)
+
+
+if __name__ == '__main__':
+    print('TEST 1 (java sequence):', frequency_bit_test(file_reader(PATH_CPP_PNG)),
+          '\nTEST 1 (c++ sequence):', frequency_bit_test(file_reader(PATH_JAVA_PNG)))
+    print('TEST 2 (java sequence):', identical_consecutive_bits(file_reader(PATH_CPP_PNG)),
+          '\nTEST 2 (c++ sequence):', identical_consecutive_bits(file_reader(PATH_JAVA_PNG)))
+    print('TEST 3 (java sequence):', longest_sequence_of_ones_in_block(file_reader(PATH_CPP_PNG)),
+          '\nTEST 3 (c++ sequence):', longest_sequence_of_ones_in_block(file_reader(PATH_JAVA_PNG)))
