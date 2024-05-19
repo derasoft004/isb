@@ -11,7 +11,6 @@ class HybridSystem:
     """
     class with tasks for doing encryption using symmetric and asymmetric keys
     """
-
     def __init__(self, text_path: str, symmetric_key_path: str,
                  encrypted_text_path: str, decrypted_text_path: str,
                  symmetric_crypto: SymmetricAlgorithm, asymmetric_crypto: AsymmetricAlgorithm) -> None:
@@ -55,7 +54,7 @@ class HybridSystem:
         enc_file.write_text_file(encrypted_text)
         logging.info("Message encrypted and written to file 'encrypted_text.txt'.")
 
-
+    @func_handler
     def decrypt_text(self) -> None:
         """
         method decrypts text using the generated symmetric key
