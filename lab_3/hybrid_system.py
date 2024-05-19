@@ -36,7 +36,7 @@ class HybridSystem:
         key = FileAssistant(f"{self.symmetric_key_path[:-4]}_{self.symmetric_crypto.key_len}.txt")
         key.serialize_key(encrypted_symmetric_key)
 
-        logging.info("Keys generated and serialize to files 'symmetric.txt', 'public.pem', 'private.pem'.")
+        logging.info("Keys generated and serialize to files 'symmetric_<-len>.txt', 'public.pem', 'private.pem'.")
 
     @func_handler
     def encrypt_text(self) -> None:
