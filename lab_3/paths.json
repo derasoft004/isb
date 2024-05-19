@@ -1,0 +1,8 @@
+{
+  "text_file": "data/message.txt",
+  "public_key": "data/public.pem",
+  "private_key": "data/private.pem",
+  "symmetric_key_file": "data/symmetric.txt",
+  "encrypted_text_file": "data/encrypted_text.txt",
+  "decrypted_text_file": "data/decrypted_text.txt"
+}
