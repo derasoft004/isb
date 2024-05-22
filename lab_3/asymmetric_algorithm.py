@@ -37,47 +37,35 @@ class AsymmetricAlgorithm:
         """
         method serialize private key
         """
-        try:
-            with open(self.private_key_path, 'wb') as key_file:
-                key_file.write(private_key.private_bytes(encoding=serialization.Encoding.PEM,
-                                                         format=serialization.PrivateFormat.TraditionalOpenSSL,
-                                                         encryption_algorithm=serialization.NoEncryption()))
-        except Exception as e:
-            logging.error(f"Error in serializing private key - {e}")
+        with open(self.private_key_path, 'wb') as key_file:
+            key_file.write(private_key.private_bytes(encoding=serialization.Encoding.PEM,
+                                                     format=serialization.PrivateFormat.TraditionalOpenSSL,
+                                                     encryption_algorithm=serialization.NoEncryption()))
 
     @func_handler
     def serialize_public_key(self, public_key: rsa.RSAPublicKey) -> None:
         """
         method serialize public key
         """
-        try:
-            with open(self.public_key_path, 'wb') as key_file:
-                key_file.write(public_key.public_bytes(encoding=serialization.Encoding.PEM,
-                                                       format=serialization.PublicFormat.SubjectPublicKeyInfo))
-        except Exception as e:
-            logging.error(f"Error in serializing public key - {e}")
+        with open(self.public_key_path, 'wb') as key_file:
+            key_file.write(public_key.public_bytes(encoding=serialization.Encoding.PEM,
+                                                   format=serialization.PublicFormat.SubjectPublicKeyInfo))
 
     @func_handler
     def deserialize_private_key(self) -> rsa.RSAPrivateKey:
         """
         method deserialize private key
         """
-        try:
-            with open(self.private_key_path, 'rb') as key_file:
-                return serialization.load_pem_private_key(key_file.read(), password=None)
-        except Exception as e:
-            logging.error(f"Error in deserializing private key - {e}")
+        with open(self.private_key_path, 'rb') as key_file:
+            return serialization.load_pem_private_key(key_file.read(), password=None)
 
     @func_handler
     def deserialize_public_key(self) -> rsa.RSAPublicKey:
         """
         method deserialize public key
         """
-        try:
-            with open(self.public_key_path, 'rb') as key_file:
-                return serialization.load_pem_public_key(key_file.read())
-        except Exception as e:
-            logging.error(f"Error in serializing public key - {e}")
+        with open(self.public_key_path, 'rb') as key_file:
+            return serialization.load_pem_public_key(key_file.read())
 
     @staticmethod
     @func_handler

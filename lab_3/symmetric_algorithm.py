@@ -37,18 +37,13 @@ class SymmetricAlgorithm:
         """
         method encrypts text using symmetric key
         """
-        try:
-            iv = os.urandom(8)
-            cipher = Cipher(algorithms.Blowfish(symmetric_key), modes.CBC(iv))
-            encryptor = cipher.encryptor()
-            padder = padding.PKCS7(128).padder()
-            padded_text = padder.update(text) + padder.finalize()
-            return iv + encryptor.update(padded_text) + encryptor.finalize()
-        except CryptographyDeprecationWarning:
-            logging.warning("In this version Blowfish marked as old type")
+        iv = os.urandom(8)
+        cipher = Cipher(algorithms.Blowfish(symmetric_key), modes.CBC(iv))
+        encryptor = cipher.encryptor()
+        padder = padding.PKCS7(128).padder()
+        padded_text = padder.update(text) + padder.finalize()
+        return iv + encryptor.update(padded_text) + encryptor.finalize()
 
-        except Exception as e:
-            logging.error(f"Error in encryption - {e}")
 
     @staticmethod
     @func_handler
@@ -56,16 +51,10 @@ class SymmetricAlgorithm:
         """
         method decrypts text using symmetric key
         """
-        try:
-            iv = encrypted_text[:8]
-            encrypted_text = encrypted_text[8:]
-            cipher = Cipher(algorithms.Blowfish(symmetric_key), modes.CBC(iv))
-            decryptor = cipher.decryptor()
-            decrypted_text = decryptor.update(encrypted_text) + decryptor.finalize()
-            unpadder = padding.PKCS7(128).unpadder()
-            return unpadder.update(decrypted_text) + unpadder.finalize()
-        except CryptographyDeprecationWarning:
-            logging.warning("In this version Blowfish marked as old type")
-
-        except Exception as e:
-            logging.error(f"Error in decryption - {e}")
+        iv = encrypted_text[:8]
+        encrypted_text = encrypted_text[8:]
+        cipher = Cipher(algorithms.Blowfish(symmetric_key), modes.CBC(iv))
+        decryptor = cipher.decryptor()
+        decrypted_text = decryptor.update(encrypted_text) + decryptor.finalize()
+        unpadder = padding.PKCS7(128).unpadder()
+        return unpadder.update(decrypted_text) + unpadder.finalize()

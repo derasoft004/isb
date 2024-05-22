@@ -1,8 +1,6 @@
-import logging
-
 from symmetric_algorithm import SymmetricAlgorithm
 from asymmetric_algorithm import AsymmetricAlgorithm
-from function_assistants import FileAssistant, func_handler
+from file_util import *
 
 logging.basicConfig(level=logging.INFO)
 
