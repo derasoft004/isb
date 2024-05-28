@@ -1,10 +1,10 @@
-from multiprocessing import cpu_count
-import hashlib
+from constants import CARD_HASH, LAST_NUMS, BINS
+from card_handler import multy_brut_card_number
 
-from constants import CARD_HASH, LAST_NUMS, HASH_ALGORITHM, BINS
+def main():
+    multy_brut_card_number(BINS, CARD_HASH, LAST_NUMS, 8)
 
 
-CPU_COUNT = cpu_count()
-
-print(hashlib.algorithms_available)
+if __name__ == "__main__":
+    main()
 
