@@ -1,8 +1,9 @@
 {
   "hash": "cb28fea647fab039e21aedf9762c895f6514d70ae404d5eac3c2b1da26547745",
   "payment_system": "Mastercard",
-  "type": "credit",
+  "type_card": "credit",
   "bank_name": "alpha_bank",
-  "last_4_symbols": "5623",
-  "hash_algorithm": "sha3_256"
+  "last_nums": 5623,
+  "hash_algorithm": "sha3_256",
+  "bins": [514055, 558334]
 }
