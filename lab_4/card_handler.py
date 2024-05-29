@@ -32,3 +32,25 @@ def multy_brut_card_number(bins_cards: list, hash_string: str, last_nums: int, c
                 pool.terminate()
                 return finally_card
         logging.info("Current card's number wasn't find")
+
+
+def algorithm_luna(card_number: str) -> bool:
+    """
+    algorithm Luna divides the sentence nums to even and odd and every odd is multiplied by 2
+    next step function check is it more than 9 or not, if it's function adds numbers of current num (multiplied by 2)
+    and adds finally numbers to returned sum
+    func returns True, if returned sum mod 10 = 0.
+    """
+    return_num = 0
+    for ind, elem in enumerate(card_number):
+        cur_letter = int(elem)
+        if not ind % 2:
+            cur_letter *= 2
+            tmp_num = cur_letter
+            if cur_letter > 9:
+                cur_letter = tmp_num % 10 + 1
+        return_num += cur_letter
+
+    if not return_num % 10:
+        return True
+    return False
