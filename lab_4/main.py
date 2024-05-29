@@ -60,7 +60,7 @@ def main():
         case args if args.correctness_cards_num:
             if args.cards_number:
                 card_number: str = args.cards_number
-            else: card_number: str = load_json(args.cards_number)
+            else: card_number: str = load_json(FINALLY_CARD)
             print(card_number)
             if algorithm_luna(card_number):
                 print('Your card is correctness.')
