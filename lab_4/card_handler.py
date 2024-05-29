@@ -1,9 +1,11 @@
 import logging
+import time
 
 import hashlib
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
+from matplotlib import pyplot
 
-from functions_assistans import func_handler, dump_json
+from functions_assistans import func_handler
 
 
 @func_handler
@@ -34,6 +36,7 @@ def multy_brut_card_number(bins_cards: list, hash_string: str, last_nums: int, c
         logging.info("Current card's number wasn't find")
 
 
+@func_handler
 def algorithm_luna(card_number: str) -> bool:
     """
     algorithm Luna divides the sentence nums to even and odd and every odd is multiplied by 2
@@ -54,3 +57,23 @@ def algorithm_luna(card_number: str) -> bool:
     if not return_num % 10:
         return True
     return False
+
+
+@func_handler
+def search_for_hash_collision(bins_cards: list, hash_string: str, last_nums: int) -> None:
+    """
+    func draws the dependence of time on the number of processor cores used
+    """
+    cpu_lst, time_lst = range(1, round(1.5 * cpu_count())), []
+    for cpu in cpu_lst:
+        start = time.time()
+        if multy_brut_card_number(bins_cards, hash_string, last_nums, cpu): time_lst.append(time.time() - start)
+
+    x, y = list(cpu_lst), time_lst
+
+    pyplot.figure(figsize=(30, 5))
+    pyplot.xlabel('Cores')
+    pyplot.ylabel('Time of decrypt')
+    pyplot.title('Times of decrypt on difference cores!!!')
+    pyplot.bar(x, y, color='gold', width=0.05)
+    pyplot.show()

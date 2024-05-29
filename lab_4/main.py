@@ -3,7 +3,7 @@ import argparse
 from multiprocessing import cpu_count
 
 from constants import CARD_HASH, LAST_NUMS, BINS, FINALLY_CARD
-from card_handler import multy_brut_card_number, algorithm_luna
+from card_handler import multy_brut_card_number, algorithm_luna, search_for_hash_collision
 from functions_assistans import func_handler, dump_json, load_json
 
 @func_handler
@@ -23,10 +23,12 @@ def argparser():
     group.add_argument('-corr', '--correctness_cards_num',
                        action='store_true',
                        help='Check the correctness of cards number using algorithm Luna.')
+    group.add_argument('-timer', '--time_to_search_for_hash_collision',
+                       action='store_true',
+                       help='Art the bars-graph about time to search for hash collision.')
 
     parser.add_argument('-card_num', '--cards_number',
                         type=str,
-                        # default=FINALLY_CARD,
                         help='Use the card number or enter your own.')
     parser.add_argument('-ser', '--serialize_number',
                         type=str,
@@ -65,6 +67,11 @@ def main():
             if algorithm_luna(card_number):
                 print('Your card is correctness.')
             else: print('Your card isn\'t correctness.')
+        case args if args.time_to_search_for_hash_collision:
+            bins_cards: list = BINS
+            hash_string: str = CARD_HASH
+            last_nums: int = LAST_NUMS
+            search_for_hash_collision(bins_cards, hash_string, last_nums)
 
 
 if __name__ == "__main__":
