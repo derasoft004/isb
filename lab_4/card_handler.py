@@ -3,7 +3,7 @@ import logging
 import hashlib
 from multiprocessing import Pool
 
-from functions_assistans import func_handler, file_writer
+from functions_assistans import func_handler, dump_json
 
 
 @func_handler
@@ -29,7 +29,6 @@ def multy_brut_card_number(bins_cards: list, hash_string: str, last_nums: int, c
                                           for center_num in range(1_000_000)]):
             if finally_card:
                 logging.info(f"Current card's number is: {finally_card}.")
-                file_writer("finally_card.txt", finally_card)
                 pool.terminate()
                 return finally_card
         logging.info("Current card's number wasn't find")

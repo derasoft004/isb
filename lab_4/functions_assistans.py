@@ -25,6 +25,15 @@ def load_json(file_name: str) -> dict:
 
 
 @func_handler
+def dump_json(path_file: str, string: str) -> None:
+    """
+    func for writing .txt files
+    """
+    with open(path_file, 'w') as file:
+        json.dump(string, file)
+
+
+@func_handler
 def file_reader(path_file: str) -> str:
     """
     func for reading .txt files

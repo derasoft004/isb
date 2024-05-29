@@ -1,6 +1,7 @@
 from functions_assistans import load_json
 
 CARD_INFO_PATH = 'cards_info.json'
+PATHS = 'paths.json'
 
 dict_cards_information = load_json(CARD_INFO_PATH)
 
@@ -11,3 +12,7 @@ BANK_NAME = dict_cards_information["bank_name"]
 LAST_NUMS = dict_cards_information["last_nums"]
 HASH_ALGORITHM = dict_cards_information["hash_algorithm"]
 BINS = dict_cards_information["bins"]
+
+dict_paths = load_json(PATHS)
+
+FINALLY_CARD = dict_paths["finally_card"]
