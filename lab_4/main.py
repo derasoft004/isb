@@ -3,8 +3,8 @@ import argparse
 from multiprocessing import cpu_count
 
 from constants import CARD_HASH, LAST_NUMS, BINS, FINALLY_CARD
-from card_handler import multy_brut_card_number
-from functions_assistans import func_handler, dump_json
+from card_handler import multy_brut_card_number, algorithm_luna
+from functions_assistans import func_handler, dump_json, load_json
 
 @func_handler
 def argparser():
@@ -20,7 +20,14 @@ def argparser():
     group.add_argument('-card', '--decryption_card_hash',
                        action='store_true',
                        help='Run decryption card hash using (default using 4 cores).')
+    group.add_argument('-corr', '--correctness_cards_num',
+                       action='store_true',
+                       help='Check the correctness of cards number using algorithm Luna.')
 
+    parser.add_argument('-card_num', '--cards_number',
+                        type=str,
+                        # default=FINALLY_CARD,
+                        help='Use the card number or enter your own.')
     parser.add_argument('-ser', '--serialize_number',
                         type=str,
                         default=FINALLY_CARD,
@@ -50,8 +57,14 @@ def main():
                 file_to_dump = args.serialize_number
                 dump_json(file_to_dump, finally_card)
 
-        case args if args.n:
-            ...
+        case args if args.correctness_cards_num:
+            if args.cards_number:
+                card_number: str = args.cards_number
+            else: card_number: str = load_json(args.cards_number)
+            print(card_number)
+            if algorithm_luna(card_number):
+                print('Your card is correctness.')
+            else: print('Your card isn\'t correctness.')
 
 
 if __name__ == "__main__":

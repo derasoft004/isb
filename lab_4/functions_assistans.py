@@ -15,7 +15,7 @@ def func_handler(func):
 
 
 @func_handler
-def load_json(file_name: str) -> dict:
+def load_json(file_name: str) -> dict | str:
     """
     func for reading .json file
     """
