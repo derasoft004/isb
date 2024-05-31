@@ -1,9 +1,9 @@
+import hashlib
 import logging
 import time
 
-import hashlib
-from multiprocessing import Pool, cpu_count
 from matplotlib import pyplot
+from multiprocessing import Pool, cpu_count
 
 from functions_assistans import func_handler
 
@@ -75,5 +75,7 @@ def search_for_hash_collision(bins_cards: list, hash_string: str, last_nums: int
     pyplot.xlabel('Cores')
     pyplot.ylabel('Time of decrypt')
     pyplot.title('Times of decrypt on difference cores!!!')
+    pyplot.plot(x, y, color='navy', linestyle='--', marker='x', linewidth=1, markersize=4)
     pyplot.bar(x, y, color='gold', width=0.05)
+
     pyplot.show()
